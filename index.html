@@ -5,11 +5,13 @@
   <title>albertocc</title>
   <meta name="description" content="Hello, my name is alberto.">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet">
+
   <style>
-  body {
-    margin: 0;
-    overflow: hidden;
-  }
+    body {
+      margin: 0;
+      overflow: hidden;
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -17,39 +19,60 @@
   <canvas id="canvas"></canvas>
 
   <script>
+    // const FONT_NAME = 'Amatica SC';
     var canvas = document.getElementById("canvas");
-    w = window.innerWidth;
-    h = window.innerHeight;
+    var w = window.innerWidth;
+    var h = window.innerHeight;
     canvas.width = w;
     canvas.height = h;
+    var aux = 0;
+    var txt;
 
     var ctx = canvas.getContext("2d");
 
-    var refresh = function() {
+    var draw = function() {
+
       ctx.clearRect(0, 0, w, h);
 
-      for (i = 0; i < 5; i++) {
+      for (var i = 0; i < 5; i++) {
         var x = Math.floor(Math.random() * w);
         var y = Math.floor(Math.random() * h);
-
         var r = Math.floor(Math.random() * 100);
         var g = Math.floor(Math.random() * 255);
         var b = Math.floor(Math.random() * 255);
-
         ctx.beginPath();
-        ctx.fillStyle = "rgba(" + r + "," + g + "," + b + ",.8)";
+        ctx.fillStyle = "rgba(" + r + "," + g + "," + b + ",.6)";
         ctx.moveTo(x, y);
         ctx.lineTo(x, x);
         ctx.lineTo(y, x);
         ctx.fill();
         ctx.closePath();
       }
+
+      switch (aux) {
+        case 0:
+          txt = "HELLO, MY NAME IS ALBERTO.";
+          break;
+        case 1:
+          txt = "I HAVE A WEBPAGE.";
+          break;
+        default:
+          txt = "HTTP://ALBERTO.CC";
+          // window.location.href = 'http://alberto.cc';
+      }
+
       ctx.font = "4em Montserrat";
       ctx.fillStyle = "rgba(20,20,20,.6)";
-      ctx.fillText("HELLO, MY NAME IS ALBERTO.", 100, (h/2));
-    }
-    refresh();
-    canvas.addEventListener("click", refresh, false);
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(txt, (w / 2), (h / 2));
+      // if(aux == 2){
+      //   window.location.href = 'http://alberto.cc';
+      // }
+      aux++;
+    };
+    document.fonts.load('4em "Montserrat"').then(draw);
+    canvas.addEventListener("click", draw, false);
   </script>
 </body>
 
