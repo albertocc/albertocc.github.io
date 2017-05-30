@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>countdown</title>
+  <meta name="description" content="Hello, my name is alberto.">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      cursor: pointer;
+      background: #cecece;
+    }
+
+    h1 {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2.5em;
+      font-family: 'Montserrat', sans-serif;
+      color: rgba(255, 0, 0, .5);
+    }
+  </style>
+
+  <script>
+    var end = moment('2017-06-12 11:35:00');
+    var now = moment();
+
+    var countdown = (function() {
+      now = moment();
+      var days = end.diff(now, 'days');
+      var hours = (end.diff(now, 'hours') - days * 24);
+      var minutes = (end.diff(now, 'minutes') - (days * 1440 + hours * 60));
+      var seconds = (end.diff(now, 'seconds') - (days * 86400 + hours * 3600 + minutes * 60));
+
+      var text = '<h1>' + days + ' DIAS<br>' + hours + ' HORAS<br>' + minutes + ' MINUTOS<br>' + seconds + ' SEGUNDOS</h1>';
+      document.getElementById("timer").innerHTML = text;
+    });
+
+    if (end.diff(now, 'days') > 0) {
+      setInterval(countdown, 1000);
+    }
+  </script>
+</head>
+
+<body>
+  <h1 id="timer"></h1>
+</body>
+
+</html>
