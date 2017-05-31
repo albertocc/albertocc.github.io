@@ -37,7 +37,7 @@
       var minutes = (end.diff(now, 'minutes') - (days * 1440 + hours * 60));
       var seconds = (end.diff(now, 'seconds') - (days * 86400 + hours * 3600 + minutes * 60));
 
-      var text = '<h1>' + days + ' DIAS<br>' + hours + ' HORAS<br>' + minutes + ' MINUTOS<br>' + seconds + ' SEGUNDOS</h1>';
+      var text = days + ' DIAS<br>' + hours + ' HORAS<br>' + minutes + ' MINUTOS<br>' + seconds + ' SEGUNDOS';
       document.getElementById("timer").innerHTML = text;
     });
 
