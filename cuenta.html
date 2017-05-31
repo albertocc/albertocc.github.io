@@ -4,16 +4,15 @@
 <head>
   <title>countdown</title>
   <meta name="description" content="Hello, my name is alberto.">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700|Roboto+Mono:700" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
   <style>
     body {
-      margin: 0;
-      overflow: hidden;
-      cursor: pointer;
+      margin: 2em;
+      border: 10px solid tomato;
       background: #cecece;
     }
-
+    
     h1 {
       margin: 0;
       position: absolute;
@@ -22,7 +21,11 @@
       transform: translate(-50%, -50%);
       font-size: 2.5em;
       font-family: 'Montserrat', sans-serif;
-      color: rgba(255, 0, 0, .5);
+      color: tomato;
+    }
+    
+    span {
+      font-family: 'Roboto Mono', monospace;
     }
   </style>
 
@@ -37,7 +40,7 @@
       var minutes = (end.diff(now, 'minutes') - (days * 1440 + hours * 60));
       var seconds = (end.diff(now, 'seconds') - (days * 86400 + hours * 3600 + minutes * 60));
 
-      var text = days + ' DIAS<br>' + hours + ' HORAS<br>' + minutes + ' MINUTOS<br>' + seconds + ' SEGUNDOS';
+      var text = '<span>'+ days + '</span> DIAS<br><span>' + ("0" + hours).slice(-2) + '</span> HORAS<br><span>' + ("0" + minutes).slice(-2) + '</span> MINUTOS<br><span>' + ("0" + seconds).slice(-2) + '</span> SEGUNDOS';
       document.getElementById("timer").innerHTML = text;
     });
 
